@@ -7,7 +7,7 @@ javac App.java Frame.java Model.java Panel.java
 After that, run this to display the nonogram:
 
 ```
-java App C:\Users\charl\source\nonogram\lib\elephant.bmp
+java App {path to nonogram project}/lib/elephant.bmp
 
 ```
 
