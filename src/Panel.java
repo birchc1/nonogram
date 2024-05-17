@@ -41,8 +41,8 @@ public class Panel extends JPanel {
     private class mouseListener extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
-            int x = e.getX();
-            int y = e.getY();
+            int x = e.getX() - 50;
+            int y = e.getY() - 50;
             if (x >= 0 && x < model.getGridSize() * CELL_SIZE && y >= 0 && y < model.getGridSize() * CELL_SIZE) {
                 int row = y / CELL_SIZE;
                 int col = x / CELL_SIZE;

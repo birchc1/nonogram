@@ -1,9 +1,14 @@
+import java.awt.image.BufferedImage;
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 public class Model {
     private final int gridSize = 15;
@@ -18,22 +23,27 @@ public class Model {
         userSolution = new boolean[gridSize][gridSize];
         generateClues();
     }
-    private boolean[][] loadSolution(String imagePath) throws IOException {
+public boolean[][] loadSolution(String imagePath) throws IOException {
         File file = new File(imagePath);
-        FileInputStream fis = new FileInputStream(file);
-        DataInputStream dis = new DataInputStream(fis);
-        dis.skipBytes(61);
-        boolean[][] solution = new boolean [gridSize][gridSize];
-        int blackColour = dis.readInt();
+        BufferedImage image = ImageIO.read(file);
+
+        if (image == null) {
+            throw new IOException("The file is not a valid BMP image.");
+        }
+
+        boolean[][] solution = new boolean[gridSize][gridSize];
+
+        
+        int blackColour = 0xFF000000;
         colourMap.put(blackColour, true);
-        for (int y = gridSize - 1; y >= 0; y--) {
-            for(int x = 0; x < gridSize; x++) {
-                int pixel = dis.readInt();
+
+        for (int y = 0; y < gridSize; y++) {
+            for (int x = 0; x < gridSize; x++) {
+                int pixel = image.getRGB(x, y);
                 solution[y][x] = colourMap.getOrDefault(pixel, false);
             }
         }
-        dis.close();
-        fis.close();
+
         return solution;
     }
 
@@ -90,6 +100,19 @@ public class Model {
     }
     public int[] getColClues() {
         return colClues;
+    }
+    public void setUserSolutionCell(int row, int col, boolean value) {
+        userSolution[row][col] = value;
+    }
+    public boolean isSolved() {
+        for (int i =0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                if (userSolution [i][j] != solution [i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }
