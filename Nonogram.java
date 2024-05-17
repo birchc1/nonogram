@@ -12,7 +12,7 @@ public class Nonogram extends JFrame{
     private int[] colClues;
     private int gridSize = 15;
     private static final int CELL_SIZE = 50; //may change in future
-    private Panel nonogramPanel;
+    private NPanel nonogramPanel;
     private Map<Integer, Boolean> colourMap = new HashMap<>();
 
     public Nonogram(String imagePath) {
@@ -20,6 +20,7 @@ public class Nonogram extends JFrame{
             solution = loadSolution(imagePath); 
         }
         catch (IOException e) {
+            System.out.println(e);
             return;
         }
         userSolution = new boolean[gridSize][gridSize];
