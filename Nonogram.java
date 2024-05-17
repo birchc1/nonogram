@@ -11,23 +11,37 @@ public class Nonogram extends JFrame{
     private int[] rowClues;
     private int[] colClues;
     private int gridSize = 15;
-    private static final int CELL_SIZE = 100; //may change in future
-    
+    private static final int CELL_SIZE = 50; //may change in future
+    private Panel nonogramPanel;
+    private Map<Integer, Boolean> colourMap = new HashMap<>();
+
     public Nonogram(String imagePath) {
         try {
-            solution = loadSolution(imagePath);
+            solution = loadSolution(imagePath); 
         }
         catch (IOException e) {
             return;
         }
-
         userSolution = new boolean[gridSize][gridSize];
         generateClues();
-
         setTitle("Nonogram Puzzle");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-
+        nonogramPanel = new Panel();
+        add(nonogramPanel, BorderLayout.CENTER);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
         
+
+        private boolean[][] loadSolution(String imagePath) throws IOException {
+
+        }
+        private class Panel extends JPanel {
+            public Panel() {
+                setPreferredSize(new Dimension(gridSize * CELL_SIZE + 100, gridSize * CELL_SIZE + 100));
+                setBackground(Colour.WHITE);
+            }
+        }
     }
 }
