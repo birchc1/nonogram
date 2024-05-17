@@ -18,4 +18,24 @@ public class Model {
         userSolution = new boolean[gridSize][gridSize];
         generateClues();
     }
+    private boolean[][] loadSolution(String imagePath) throws IOException {
+        File file = new File(imagePath);
+    }
+
+    public int getGridSize() {
+        return gridSize;
+    }
+    public boolean[][] getSolution() {
+        return solution;
+    }
+    public boolean[][]getUserSolution() {
+        return userSolution;
+    }
+    public int[] getRowClues() {
+        return rowClues;
+    }
+    public int[] getColClues() {
+        return colClues;
+    }
+
 }

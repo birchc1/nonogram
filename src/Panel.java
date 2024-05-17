@@ -11,6 +11,7 @@ public class Panel extends JPanel {
         setPreferredSize(new Dimension(gridSize * CELL_SIZE + 100, gridSize * CELL_SIZE + 100));
         setBackground(Colour.WHITE);
     }
+    
     private class MouseListener extends MouseAdapter {
         public void mouseCLicked(mouseEvent e) {
             int x = e.getX();
