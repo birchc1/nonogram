@@ -1,5 +1,5 @@
 import javax.swing.*;
-import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.io.IOException;
 
 public class Frame extends JFrame {
@@ -10,8 +10,8 @@ public class Frame extends JFrame {
 
             setTitle("Nonogram");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setLayout(new BorderLayout());
-            add(panel, BorderLayout.CENTER);
+            setLayout(new FlowLayout(FlowLayout.LEADING));
+            add(panel);
             pack();
             setLocationRelativeTo(null);
             setVisible(true);

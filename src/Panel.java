@@ -13,7 +13,7 @@ public class Panel extends JPanel {
     public Panel(Model model) {
         this.model = model;
         gridSize = model.getGridSize();
-        setPreferredSize(new Dimension(gridSize * CELL_SIZE + 100, gridSize * CELL_SIZE + 100));
+        setPreferredSize(new Dimension(gridSize * CELL_SIZE + 100, gridSize * CELL_SIZE + 200));
         setBackground(Color.WHITE);
         addMouseListener(new mouseListener());
         checkButton = new JButton("Check");
@@ -23,9 +23,8 @@ public class Panel extends JPanel {
                 checkSolution();
             }
         });
-        //add(checkButton, BorderLayout.);
-        checkButton.setPreferredSize(new Dimension(75, 30));
-        add(checkButton, BorderLayout.SOUTH);
+
+        add(checkButton);
     }
     private void checkSolution() {
         boolean isSolved = model.isSolved();
