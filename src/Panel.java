@@ -27,6 +27,16 @@ public class Panel extends JPanel {
             g.drawString(String.valueOf(model.getColClues()[i]), (i + 1) * CELL_SIZE + 20, 20);
         }
     }
+    private void drawGrid(Graphics g) {
+        for (int i = 0; i < model.getGridSize(); i++) {
+            for (int j = 0; j < model.getGridSize(); j++) {
+                g.setColor(model.getUserSolution()[i][j] ? Color.BLACK : Color.WHITE);
+                g.fillRect(j * CELL_SIZE + 50, i * CELL_SIZE + 50, CELL_SIZE, CELL_SIZE);
+                g.setColor(Color.GRAY);
+                g.drawRect(j * CELL_SIZE + 50, i * CELL_SIZE + 50, CELL_SIZE, CELL_SIZE);
+            }
+        }
+    }
     
     private class mouseListener extends MouseAdapter {
         @Override
